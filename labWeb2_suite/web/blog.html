@@ -20,91 +20,73 @@
 </head>
 <body class="bg-dark text-white">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-sm border border-bottom border-white">
-        <div class="container-fluid px-4">
-            <a class="navbar-brand" href="principal.html">
-                <img src="image/logo.png" alt="Logo" width="120" height="80" class="d-none d-md-block">
-                <img src="image/logo.png" alt="Logo" width="60" height="40" class="d-block d-md-none">
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto text-center text-lg-start">
-                    <li class="nav-item me-lg-4">
-                        <a class="nav-link text-white" href="blog.html">Menu1</a>
-                    </li>
-                    <li class="nav-item me-lg-4">
-                        <a class="nav-link text-white" href="">Menu2</a>
-                    </li>
-                    <li class="nav-item me-lg-4">
-                        <a class="nav-link text-white" href="#">Menu3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Menu4</a>
-                    </li>
-                </ul>
-                
-                <ul class="navbar-nav text-center text-lg-start">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="login.html">
-                            <i class="bi bi-person-circle fs-2"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-   
-    <div class="container-fluid p-0 mt-5 text-center">
-        <img src="image/entrepreneur.png" class="img-fluid w-75 mx-auto d-block" alt="Entrepreneur leader innovant">
-    </div>
-    
-    <div class="container my-5">
-        
-        <div id="contenus" class="row justify-content-center">
-            </div>
-            
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                
-                <div id="form-commentaire" class="mt-5">
-                    <h4 class="mb-4">Commentaires</h4>
-                    
-                    <div class="mb-4">
-                        <textarea class="form-control" rows="5" placeholder="Votre commentaire..." name="contenu"></textarea>
-                    </div>
-                    <div class="text-end mb-5">
-                        <button class="btn btn-primary px-4">Submit</button>
-                    </div>
-                    
-                    <div id="liste-commentaires" class="mb-4">
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-    </div>
+    <!-- ============================================================ -->
+    <!-- DIV ROOT pour le Header React dans blog.html                -->
+    <!-- ============================================================ -->
+    <div id="header-root"></div>
 
-    <footer class="bg-dark py-4 mt-5 border-top border-white">
-        <div class="container text-center text-white">
-            <div class="mb-3">
-                <a href="#" class="text-white me-4 fs-4"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="text-white me-4 fs-4"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
-            </div>
-            <p class="mb-1">Centre d'Expertise et de Perfectionnement en Informatique</p>
-            <p class="mb-0">2022</p>
-        </div>
-    </footer>
+    <!-- ============================================================ -->
+    <!-- DIV ROOT pour le composant Blog (article + commentaires)    -->
+    <!-- Contient BlogDetails + CommentList + AddComment              -->
+    <!-- ============================================================ -->
+    <div id="blog-root"></div>
+
+    <!-- ============================================================ -->
+    <!-- DIV ROOT pour le Footer React dans blog.html                -->
+    <!-- ============================================================ -->
+    <div id="footer-root"></div>
     
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
+    <!-- Bootstrap JavaScript Bundle (inclut Popper pour les menus) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="../dist/blog.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- REACT - Librairie principale pour créer des composants UI    -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- REACT-DOM - Fait le lien entre React et le DOM HTML         -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- BABEL - Transforme le JSX en JavaScript compréhensible       -->
+    <!-- par le navigateur                                            -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- INCLUSION DES COMPOSANTS REACT                              -->
+    <!-- Les composants doivent être inclus avant le script          -->
+    <!-- qui les utilise                                             -->
+    <!-- ============================================================ -->
+    <!-- Composants dans l'ordre des dépendances : -->
+    <!-- Comment doit être avant CommentList (CommentList l'utilise) -->
+    <!-- BlogDetails, CommentList, AddComment avant Blog (Blog les utilise) -->
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/Footer.js"></script>
+    <script type="text/babel" src="components/BlogDetails.js"></script>
+    <script type="text/babel" src="components/Comment.js"></script>
+    <script type="text/babel" src="components/CommentList.js"></script>
+    <script type="text/babel" src="components/AddComment.js"></script>
+    <script type="text/babel" src="components/Blog.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- INITIALISATION : Monte tous les composants dans leurs roots  -->
+    <!-- ============================================================ -->
+    <script type="text/babel">
+        // Monter le Header
+        const headerRoot = ReactDOM.createRoot(document.getElementById('header-root'));
+        headerRoot.render(<Header />);
+
+        // Monter le composant Blog principal
+        // (qui contient BlogDetails + CommentList + AddComment)
+        const blogRoot = ReactDOM.createRoot(document.getElementById('blog-root'));
+        blogRoot.render(<Blog />);
+
+        // Monter le Footer
+        const footerRoot = ReactDOM.createRoot(document.getElementById('footer-root'));
+        footerRoot.render(<Footer />);
+    </script>
 </body>
 </html>

@@ -30,7 +30,11 @@ function envoyerFormulaire(form: any)
         }),
     })
     .then((response) => response.json()) // Transformation de la réponse
-    .then((json) => console.log(json)) // Affichage du résultat
+    .then((json) => {
+        console.log(json); // Affichage du résultat dans la console
+        // Redirection vers la page principale après l'envoi réussi
+        window.location.href = 'principal.html';
+    })
     .catch((error) => console.error('Erreur:', error));
  // Gestion des erreurs
 }

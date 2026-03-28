@@ -22,68 +22,11 @@
 </head>
 <body class="bg-dark text-white">
 
-    <!-- NAVBAR (Barre de navigation) -->
-    <!-- navbar : Composant de navigation Bootstrap -->
-    <!-- navbar-expand-lg : Responsive, devient hamburger menu sur écrans plus petits que lg (992px) -->
-    <!-- navbar-light : Style clair pour le texte -->
-    <!-- bg-white : Fond blanc -->
-    <!-- shadow-sm : Petite ombre portée -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-sm border border-bottom border-white">
-        <!-- container-fluid : Conteneur pleine largeur -->
-        <div class="container-fluid px-4">
-            <!-- Logo à gauche -->
-            <a class="navbar-brand" href="principal.html">
-                <img src="image/logo.png" alt="Logo" width="120" height="80" class="d-none d-md-block">
-                <!-- Version plus petite du logo sur mobile -->
-                <img src="image/logo.png" alt="Logo" width="60" height="40" class="d-block d-md-none">
-            </a>
-            
-            <!-- Bouton hamburger pour mobile/tablette -->
-            <!-- navbar-toggler : Bouton qui apparaît sur écrans plus petits que lg -->
-            <!-- data-bs-toggle="collapse" : Active/désactive le menu responsive -->
-            <!-- data-bs-target : L'élément à afficher/masquer -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <!-- Menu collapsible (se cache sur mobile/tablette) -->
-            <!-- collapse : Se replie sur petits écrans -->
-            <!-- navbar-collapse : Composant de collapse pour navbar -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- navbar-nav : Liste de navigation Bootstrap -->
-                <!-- mx-auto : Margin auto horizontal (centre l'élément sur grand écran) -->
-                <!-- text-center text-lg-start : Centré sur mobile, à gauche sur desktop -->
-                <ul class="navbar-nav mx-auto text-center text-lg-start">
-                    <!-- nav-item : Item de navigation -->
-                    <!-- me-lg-4 : Margin-end niveau 4 uniquement sur grand écran -->
-                    <li class="nav-item me-lg-4">
-                        <a class="nav-link text-white" href="blog.html">Menu1</a>
-                    </li>
-                    <li class="nav-item me-lg-4">
-                        <a class="nav-link text-white" href="#">Menu2</a>
-                    </li>
-                    <li class="nav-item me-lg-4">
-                        <a class="nav-link text-white" href="#">Menu3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Menu4</a>
-                    </li>
-                </ul>
-                
-                <!-- Icône utilisateur à droite -->
-                <!-- text-center text-lg-start : Centré sur mobile, aligné normalement sur desktop -->
-                <ul class="navbar-nav text-center text-lg-start">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="login.html">
-                            <!-- bi bi-person-circle : Icône Bootstrap Icons -->
-                            <!-- fs-2 : Font-size niveau 2 (grande taille) -->
-                            <i class="bi bi-person-circle fs-2"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- ============================================================ -->
+    <!-- DIV ROOT - Point d'entrée de React                          -->
+    <!-- Le composant Header sera rendu ici par React                -->
+    <!-- ============================================================ -->
+    <div id="header-root"></div>
 
     <!-- BARRE DE RECHERCHE ET FILTRE -->
     <!-- container : Conteneur avec largeur max et centré -->
@@ -126,41 +69,70 @@
         </div>
     </div>
 
-    <div class="container my-5 bg-dark">
-        <div id="liste-publications" class="row g-4">
-            <div class="text-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Chargement...</span>
-                </div>
-                <p>Chargement des publications...</p>
-            </div>
-        </div>
-    </div>
+    <!-- ============================================================ -->
+    <!-- DIV ROOT pour le composant BlogList                         -->
+    <!-- React va afficher la liste des articles ici                 -->
+    <!-- ============================================================ -->
+    <div id="bloglist-root"></div>
 
-    <!-- FOOTER (Pied de page) -->
-    <footer class="bg-dark py-4 mt-5 border-top border-white">
-        <div class="container text-center text-white">
-            <!-- Section des icônes réseaux sociaux -->
-            <div class="mb-3">
-                <!-- text-dark : Texte/icône noir -->
-                <!-- me-4 : Margin-end (droite) niveau 4 -->
-                <!-- fs-4 : Font-size niveau 4 -->
-                <a href="#" class="text-white me-4 fs-4"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="text-white me-4 fs-4"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
-            </div>
-            <!-- Texte de copyright -->
-            <!-- mb-1 : Margin-bottom niveau 1 (petit) -->
-            <p class="mb-1">Centre d'Expertise et de Perfectionnement en Informatique</p>
-            <!-- mb-0 : Pas de margin bottom -->
-            <p class="mb-0">2022</p>
-        </div>
-    </footer>
+    <!-- ============================================================ -->
+    <!-- DIV pour le Footer React                                    -->
+    <!-- Le composant Footer sera rendu ici                          -->
+    <!-- ============================================================ -->
+    <div id="footer-root"></div>
     
     <!-- Bootstrap JavaScript Bundle (inclut Popper pour les menus) -->
     <!-- Nécessaire pour les composants interactifs Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="../dist/main.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- REACT - Librairie principale pour créer des composants UI    -->
+    <!-- On utilise la version "development" pour avoir des messages  -->
+    <!-- d'erreur lisibles pendant le développement                   -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- REACT-DOM - Permet à React de manipuler le DOM du navigateur -->
+    <!-- C'est ce qui fait le lien entre React et la page HTML        -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- BABEL - Transforme le JSX en JavaScript standard             -->
+    <!-- Sans Babel, le navigateur ne comprendrait pas la syntaxe JSX -->
+    <!-- (ex: <div className="..."> dans du JS)                       -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- INCLUSION DES COMPOSANTS REACT                              -->
+    <!-- IMPORTANT : les composants doivent être inclus AVANT        -->
+    <!-- le script qui les utilise (ils sont lus de haut en bas)     -->
+    <!-- type="text/babel" = Babel va transformer le JSX en JS       -->
+    <!-- ============================================================ -->
+    <!-- Composants inclus dans l'ordre : les dépendances en premier -->
+    <!-- BlogCard doit être chargé AVANT BlogList car BlogList l'utilise -->
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/Footer.js"></script>
+    <script type="text/babel" src="components/BlogCard.js"></script>
+    <script type="text/babel" src="components/BlogList.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- INITIALISATION : Monte chaque composant dans sa div root    -->
+    <!-- ============================================================ -->
+    <script type="text/babel">
+        // Monter le Header
+        const headerRoot = ReactDOM.createRoot(document.getElementById('header-root'));
+        headerRoot.render(<Header />);
+
+        // Monter la liste des articles (charge l'API automatiquement)
+        const blogListRoot = ReactDOM.createRoot(document.getElementById('bloglist-root'));
+        blogListRoot.render(<BlogList />);
+
+        // Monter le Footer
+        const footerRoot = ReactDOM.createRoot(document.getElementById('footer-root'));
+        footerRoot.render(<Footer />);
+    </script>
 </body>
 </html>
